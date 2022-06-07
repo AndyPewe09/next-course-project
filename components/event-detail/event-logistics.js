@@ -12,8 +12,7 @@ function EventLogistics(props) {
     year: 'numeric',
   });
   
-  const addressText = address?.replace(',','\n')
-  console.log(address);
+  const addressText = address.replace(',','\n')
 
   return (
     <section className={classes.logistics}>
@@ -21,12 +20,10 @@ function EventLogistics(props) {
         <img src={'/' + image} alt={imageAlt} />
       </div>
       <ul className={classes.list}>
-        <LogisticsItem>
-          <DateIcon></DateIcon>
+        <LogisticsItem icon={DateIcon}>
           <time>{humanReadableDate}</time>
         </LogisticsItem>
-        <LogisticsItem>
-          <AddressIcon></AddressIcon>
+        <LogisticsItem icon={AddressIcon}>
           <address>{addressText}</address>
         </LogisticsItem>
       </ul>

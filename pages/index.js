@@ -7,6 +7,9 @@ function HomePage(){
 
   return(
     <div>
+      <header>
+        <nav></nav>
+      </header>
       <ul>
         <EvenList items={featuredEvents}></EvenList>
       </ul>
