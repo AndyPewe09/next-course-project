@@ -5,6 +5,8 @@ import EventLogistic from "../../components/event-detail/event-logistics";
 import EventContent from "../../components/event-detail/event-content";
 import ErrorAlert from "../../components/ui/error-alert";
 
+import Head from "next/head";
+
 function EvenDetailPage(props) {
   const event = props.selectedEvent;
 
@@ -14,6 +16,10 @@ function EvenDetailPage(props) {
 
   return (
     <Fragment>
+      <Head>
+        <title>{event.title}</title>
+        <meta name='description' content={event.description}></meta>
+      </Head>
       <EventSummary title={event.title}></EventSummary>
       <EventLogistic
         date={event.date}

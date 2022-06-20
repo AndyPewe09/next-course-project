@@ -1,3 +1,5 @@
+import Head from 'next/head'
+
 import { getAllEvents, getFeaturedEvents } from "../helpers/api-util";
 import EvenList from "../components/events/EventList";
 import useSWR from "swr";
@@ -6,9 +8,10 @@ import { useEffect } from "react";
 function HomePage(props) {
   return (
     <div>
-      <header>
-        <nav></nav>
-      </header>
+      <Head>
+        <title>NextJS Events</title>
+        <meta name='description' content='Fnd your event here'></meta>
+      </Head>
       <ul>
         <EvenList items={props.events}></EvenList>
       </ul>
@@ -23,7 +26,7 @@ export async function getStaticProps() {
     props: {
       events: featuredEvents,
     },
-    revalidate: 1800
+    revalidate: 10
   };
 }
 
