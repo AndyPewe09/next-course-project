@@ -19,6 +19,9 @@ function AllEventsPage(props) {
   return (
     <div>
       <Head>
+        <Head>
+          <title>All My Events</title>
+        </Head>
         <title>All Events</title>
         <meta name="description" content="Fnd your event here"></meta>
       </Head>

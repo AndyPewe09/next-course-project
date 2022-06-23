@@ -6,6 +6,7 @@ import EventContent from "../../components/event-detail/event-content";
 import ErrorAlert from "../../components/ui/error-alert";
 
 import Head from "next/head";
+import Comments from "../../components/input/comments";
 
 function EvenDetailPage(props) {
   const event = props.selectedEvent;
@@ -30,6 +31,7 @@ function EvenDetailPage(props) {
       <EventContent>
         <p>{event.description}</p>
       </EventContent>
+      <Comments eventId={event.id}></Comments>
     </Fragment>
   );
 }

@@ -4,6 +4,7 @@ import { getAllEvents, getFeaturedEvents } from "../helpers/api-util";
 import EvenList from "../components/events/EventList";
 import useSWR from "swr";
 import { useEffect } from "react";
+import NewsletterRegistration from '../components/input/newsletter-registration'
 
 function HomePage(props) {
   return (
@@ -12,6 +13,7 @@ function HomePage(props) {
         <title>NextJS Events</title>
         <meta name='description' content='Fnd your event here'></meta>
       </Head>
+      <NewsletterRegistration></NewsletterRegistration>
       <ul>
         <EvenList items={props.events}></EvenList>
       </ul>
