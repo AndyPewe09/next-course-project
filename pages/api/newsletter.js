@@ -1,18 +1,4 @@
-import { MongoClient } from "mongodb";
-
-async function connectDatabase() {
-    const client = await MongoClient.connect(
-        "mongodb+srv://maxmilian:asolole1234@clusters.vboii.mongodb.net/newsletter?retryWrites=true&w=majority"
-    );
-
-    return client
-}
-
-async function insertDocument(client, document) {
-    const db = client.db();
-
-    await db.collection("emails").insertOne({ document });
-}
+import { connectDatabase, insertDocument } from "../../helpers/db-util";
 
 export default async function handler(req, res) {
   if (req.method === "POST") {
@@ -20,27 +6,26 @@ export default async function handler(req, res) {
 
     if (!userEmail || !userEmail.includes("@")) {
       res.status(422).json({ message: "Invalid email address." });
-
       return;
     }
 
-    let client
+    let client;
 
     try {
-        client = await connectDatabase()
+      client = await connectDatabase();
     } catch (error) {
-        res.status(500).json({message: 'Connecting to the database Failed!'})
-        return
+      res.status(500).json({ message: "Connecting to the database failed!" });
+      return;
     }
 
     try {
-        await insertDocument(client, {email: userEmail})
-        client.close()
+      await insertDocument(client, "newsletter", { email: userEmail });
+      client.close();
     } catch (error) {
-        res.status(500).json({message: 'Inserting data Failed!'})
-        return
+      res.status(500).json({ message: "Inserting data failed!" });
+      return;
     }
 
-    res.status(201).json({ message: "Signed Up!" });
+    res.status(201).json({ message: "Signed up!" });
   }
 }
